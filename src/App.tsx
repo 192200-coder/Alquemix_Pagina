@@ -225,7 +225,24 @@ export default function App() {
             <div className="flex flex-wrap gap-4 mb-8">
               <Button
                 className="bg-cyan-400 hover:bg-cyan-500 text-slate-900 px-16 py-6 shadow-lg shadow-cyan-500/30 transition-all hover:shadow-xl hover:shadow-cyan-500/50"
-                onClick={() => alert("Iniciando descarga...")}
+                onClick={() => {
+                  // URL directa de descarga (usa el enlace "raw" de GitHub)
+                  const downloadUrl = "https://github.com/delmercuri/app/raw/main/app-debug.apk";
+
+                  // Crear un enlace temporal
+                  const link = document.createElement("a");
+                  link.href = downloadUrl;
+                  link.download = "Alquemix-app.apk"; // Nombre del archivo descargado
+                  link.target = "_blank"; // Abrir en nueva pestaña si hay problemas
+
+                  // Simular clic para iniciar descarga
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+
+                  // Opcional: Mostrar mensaje de confirmación
+                  alert("Descarga iniciada. La APK se guardará como 'ALquemix.apk'");
+                }}
               >
                 <Download className="w-5 h-5 mr-2" />
                 Descargar
